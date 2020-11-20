@@ -9,7 +9,7 @@ import os
 import time
 
 def _init_bin(executable_name):
-    start = time.clock()
+
     if not os.path.exists(BIN_DIR):
         print("Creating bin folder")
         os.makedirs(BIN_DIR)
@@ -19,8 +19,8 @@ def _init_bin(executable_name):
     shutil.copy2(currfile, newfile)
     print("Giving new binaries permissions for lambda")
     os.chmod(newfile, 0o775)
-    elapsed = time.clock() - start
-    print(executable_name + " ready in " + str(elapsed) + "s.")
+
+    print(executable_name + " ready.")
 def video(url):
   _init_bin("chromedriver")
   chrome_options = Options()
