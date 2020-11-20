@@ -77,7 +77,7 @@ app = Flask('')
 def main():
     return "NO"
 def run():
-    app.run(host="0.0.0.0", port=80)
+    app.run(host="0.0.0.0", port=443)
 def keep_alive():
     server = Thread(target=run)
     server.start()
