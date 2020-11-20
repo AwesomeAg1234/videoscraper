@@ -13,7 +13,7 @@ def video(url):
   chrome_options.add_argument("--no-sandbox")
 
 
-  with Chrome(options=chrome_options) as browser:
+  with Chrome(options=chrome_options,executable_path="chromedriver") as browser:
        browser.get(url)
        html = browser.page_source
 
