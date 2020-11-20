@@ -5,10 +5,24 @@ import flask
 from flask import Flask
 from threading import Thread
 import json
+import os
 import time
 
-
+def _init_bin(executable_name):
+    start = time.clock()
+    if not os.path.exists(BIN_DIR):
+        print("Creating bin folder")
+        os.makedirs(BIN_DIR)
+    print("Copying binaries for " + executable_name + " in /tmp/bin")
+    currfile = os.path.join(CURR_BIN_DIR, executable_name)
+    newfile = os.path.join(BIN_DIR, executable_name)
+    shutil.copy2(currfile, newfile)
+    print("Giving new binaries permissions for lambda")
+    os.chmod(newfile, 0o775)
+    elapsed = time.clock() - start
+    print(executable_name + " ready in " + str(elapsed) + "s.")
 def video(url):
+  _init_bin("chromedriver")
   chrome_options = Options()
   chrome_options.add_argument("--no-sandbox")
 
